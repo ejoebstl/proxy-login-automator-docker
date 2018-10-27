@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Check environment
-if [ -z "${REMOTE_HAST:-}" ]; then
+if [ -z "${REMOTE_HOST:-}" ]; then
   echo "REMOTE_HOST was not set"
 fi
 
@@ -17,13 +17,6 @@ fi
 if [ -z "${REMOTE_PASSWORD:-}" ]; then
   echo "REMOTE_PASSWORD was not set"
 fi
-
-ENV REMOTE_HOST=
-ENV REMOTE_PORT=
-ENV REMOTE_USER=
-ENV REMOTE_PASSWORD=
-ENV REMOTE_HTTPS=true
-ENV INGORE_CERT=false
 
 proxy-login-automator \
     -local_port 8080 \

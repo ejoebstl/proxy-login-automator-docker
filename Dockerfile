@@ -1,5 +1,7 @@
 FROM node:8-alpine
+RUN apk update
 RUN apk add bash
+RUN rm -rf /var/cache/apk?*
 RUN npm install -g proxy-login-automator
 COPY launcher.sh ./
 
