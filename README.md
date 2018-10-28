@@ -2,7 +2,7 @@
 
 Proxies your proxy and injects credentials. Useful for bypassing limitations some tools and browsers have with proxy authentication. 
 
-Based on (https://github.com/sjitech/proxy-login-automator)[proxy-login-automator].
+Based on [https://github.com/sjitech/proxy-login-automator](proxy-login-automator).
 
 ## Usage
 
