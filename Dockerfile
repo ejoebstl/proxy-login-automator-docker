@@ -1,7 +1,7 @@
-FROM node:8-alpine
-RUN apk update
-RUN apk add bash
-RUN rm -rf /var/cache/apk?*
+FROM node:10-buster-slim
+RUN apt-get update
+RUN apt-get install bash
+RUN apt-get clean
 RUN npm install -g proxy-login-automator
 COPY launcher.sh ./
 
