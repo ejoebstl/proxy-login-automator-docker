@@ -15,5 +15,48 @@ Supported configuration variables are:
 * `REMOTE_HTTPS`
 * `IGNORE_CERT`
 
+## Example (Standalone)
 
+```
+docker run -p 8080:8080 --env REMOTE_HOST=yourproxy.com:10000,premium.yourproxy.com:10001 --env REMOTE_USER=username --env REMOTE_PASSWORD=password --env IGNORE_CERT=true --env REMOTE_HTTPS=false -p 8081:8081 -d ejoebstl/proxy-login-automator
+```
 
+## Example (AWS ECS) (Script)
+
+```
+[{
+  "name": "proxy",
+  "image": "ejoebstl/proxy-login-automator",
+  "logConfiguration": {
+    "logDriver": "awslogs",
+    "options": {
+      "awslogs-group": "your-log-group",
+      "awslogs-region": "us-east-1",
+      "awslogs-stream-prefix": "proxy"
+    },
+  },
+  "memoryReservation": 256,
+  "environment": [
+    {
+      "name": "GET_REMOTE_HOST",
+      "value": "for i in $(seq 10150 1 10200); do printf \"proxy%i.proxy.com:%i,\" $i; done"
+    },
+    {
+      "name": "REMOTE_USER",
+      "value": "username"
+    },
+    {
+      "name": "REMOTE_PASSWORD",
+      "value": "password"
+    },
+    {
+      "name": "REMOTE_HTTPS",
+      "value": "false"
+    },
+    {
+      "name": "IGNORE_CERT",
+      "value": "true"
+    }
+  ]
+}]
+```
